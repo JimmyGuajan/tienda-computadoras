@@ -1,4 +1,5 @@
 (async function () {
+  document.getElementById("lista").innerHTML = skeletons(6);
   await montarLayout("catalogo");
   const productos = await cargarProductos();
   const $ = (id) => document.getElementById(id);
@@ -47,7 +48,7 @@
     else lista.sort((a, b) => (b.destacado ? 1 : 0) - (a.destacado ? 1 : 0));
 
     $("n").textContent = `${lista.length} producto${lista.length === 1 ? "" : "s"}`;
-    $("lista").innerHTML = lista.length ? lista.map(tarjeta).join("") : '<p class="vacio">No hay productos con esos filtros.</p>';
+    $("lista").innerHTML = lista.length ? lista.map((p) => tarjeta(p)).join("") : '<p class="vacio">No hay productos con esos filtros.</p>';
   }
 
   ["q", "cat", "marca", "uso", "max", "oferta", "orden"].forEach((id) => $(id).addEventListener("input", aplicar));
@@ -58,5 +59,6 @@
     $("oferta").checked = false;
     aplicar();
   };
+  $("ftoggle").onclick = () => $("filters").classList.toggle("open");
   aplicar();
 })();

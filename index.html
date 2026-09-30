@@ -1,42 +1,112 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TechNova | Laptops, PCs y componentes en Ecuador</title>
-<meta name="description" content="Catálogo de laptops, computadoras, componentes y periféricos. Arma tu pedido y envíalo por WhatsApp.">
+<meta name="description" content="Catálogo de laptops, computadoras, componentes y periféricos. Encuentra tu equipo ideal con nuestro asistente y envía tu pedido por WhatsApp.">
+<meta name="theme-color" content="#05070c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('tn_theme')||'dark'}catch(e){}</script>
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<header id="header"></header>
 <main>
+  <!-- HERO -->
   <section class="hero">
-    <div class="wrap">
-      <h1>Encuentra el equipo <em>ideal</em> para lo que haces</h1>
-      <p>Laptops, PCs, componentes y periféricos. Responde 3 preguntas y te recomendamos, o explora el catálogo y arma tu pedido.</p>
-      <div class="acts">
-        <a class="btn" href="asistente.html">Encuentra mi equipo</a>
-        <a class="btn btn-ghost" href="catalogo.html">Ver catálogo</a>
+    <div class="wrap hero-grid">
+      <div>
+        <a class="pill" href="asistente.html"><b>NUEVO</b> Asistente que te recomienda el equipo ideal <span aria-hidden="true">→</span></a>
+        <h1>El equipo correcto,<br><span class="grad-text">sin complicarte.</span></h1>
+        <p class="lead">Laptops, PCs, componentes y periféricos de las mejores marcas. Explora el catálogo, arma tu pedido y envíalo por WhatsApp en un minuto.</p>
+        <div class="acts">
+          <a class="btn btn-lg" href="catalogo.html">Explorar catálogo <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-lg btn-ghost" href="asistente.html">Encuentra mi equipo</a>
+        </div>
+        <div class="trust">
+          <span id="t1"></span><span id="t2"></span><span id="t3"></span>
+        </div>
+        <div class="stats">
+          <div><b id="s-prod">0</b><span>Productos</span></div>
+          <div><b id="s-cat">0</b><span>Categorías</span></div>
+          <div><b id="s-mar">0</b><span>Marcas</span></div>
+        </div>
+      </div>
+
+      <div class="device" aria-hidden="true">
+        <div class="device-glow"></div>
+        <div class="laptop">
+          <div class="screen">
+            <div class="scr-top"><i></i><i></i><i></i><em>BENCHMARK</em></div>
+            <div class="scr-body">
+              <div class="scr-chart">
+                <svg viewBox="0 0 200 100" preserveAspectRatio="none">
+                  <defs><linearGradient id="lg" x1="0" x2="1"><stop offset="0" stop-color="#5b8cff"/><stop offset=".6" stop-color="#8b5cf6"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs>
+                  <path d="M0 25H200M0 50H200M0 75H200" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+                  <polyline class="line" points="4,88 28,70 50,76 74,46 98,54 122,30 148,38 172,14 196,20"/>
+                </svg>
+              </div>
+              <div class="scr-side">
+                <div class="scr-fps"><span id="fps">144</span><small>FPS</small></div>
+                <div class="bar"><i style="--w:92%"></i></div>
+                <div class="bar"><i style="--w:68%"></i></div>
+                <div class="bar"><i style="--w:81%"></i></div>
+              </div>
+            </div>
+          </div>
+          <div class="lap-base"></div>
+        </div>
+        <div class="chip-f c1"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg>Core i7 · 13va gen</div>
+        <div class="chip-f c2"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>RTX 4060 · 8 GB</div>
+        <div class="chip-f c3"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 14h18M7 17h.01"/></svg>SSD NVMe 1 TB</div>
       </div>
     </div>
   </section>
 
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true"><div class="marquee-track" id="marquee"></div></div>
+
+  <!-- CATEGORÍAS -->
   <section class="section"><div class="wrap">
-    <h2>Categorías</h2><p class="sub">Todo lo que necesitas en un solo lugar</p>
-    <div class="cats" id="cats"></div>
+    <div class="sec-head"><div><span class="eyebrow">Categorías</span><h2>Todo para tu setup</h2><p class="sub">De la laptop al último componente, en un solo lugar.</p></div></div>
+    <div class="bento" id="cats"></div>
   </div></section>
 
-  <section class="section"><div class="wrap">
-    <div class="head-row"><div><h2>Destacados</h2></div><a class="btn btn-ghost" href="catalogo.html">Ver todo</a></div>
+  <!-- DESTACADOS -->
+  <section class="section" style="padding-top:0"><div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Selección</span><h2>Productos destacados</h2></div><a class="btn btn-ghost" href="catalogo.html">Ver todo</a></div>
     <div class="grid" id="destacados"></div>
   </div></section>
 
-  <section class="section"><div class="wrap">
-    <div class="head-row"><div><h2>Ofertas</h2></div><a class="btn btn-ghost" href="catalogo.html?oferta=1">Ver todas</a></div>
+  <!-- CTA ASISTENTE -->
+  <section class="section" style="padding-top:0"><div class="wrap">
+    <div class="cta reveal">
+      <div>
+        <h2>¿No sabes cuál elegir?</h2>
+        <p>Responde 3 preguntas sobre tu uso, presupuesto y preferencia. Te mostramos los equipos que mejor encajan, con su porcentaje de compatibilidad.</p>
+        <a class="btn btn-lg" href="asistente.html">Empezar el test</a>
+      </div>
+      <div class="cta-art"><span>🎮 Gaming</span><span>🎨 Diseño y video</span><span>💻 Programación</span></div>
+    </div>
+  </div></section>
+
+  <!-- OFERTAS -->
+  <section class="section" style="padding-top:0"><div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Precios especiales</span><h2>Ofertas</h2></div><a class="btn btn-ghost" href="catalogo.html?oferta=1">Ver todas</a></div>
     <div class="grid" id="ofertas"></div>
   </div></section>
+
+  <!-- CÓMO COMPRAR -->
+  <section class="section" style="padding-top:0"><div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Proceso</span><h2>Compra en 4 pasos</h2><p class="sub">Sin registros ni formularios largos.</p></div></div>
+    <div class="steps" id="steps"></div>
+  </div></section>
+
+  <!-- BENEFICIOS -->
+  <section class="section" style="padding-top:0"><div class="wrap"><div class="perks" id="perks"></div></div></section>
 </main>
-<footer id="footer"></footer>
 <script src="js/settings.js"></script>
 <script src="js/app.js"></script>
 <script src="js/inicio.js"></script>

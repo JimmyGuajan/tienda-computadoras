@@ -4,6 +4,9 @@
   const $ = (id) => document.getElementById(id);
   let ultimo = null; // { doc, nombreArchivo, texto }
 
+  $("vacio-ico").innerHTML = ico("bag", 54);
+  $("modal-check").innerHTML = ico("check", 34);
+
   function lineasActuales() {
     const c = Carrito.leer();
     return Object.entries(c)
@@ -24,12 +27,12 @@
         ${imgTag(p)}
         <div>
           <h4><a href="producto.html?id=${encodeURIComponent(p.id)}">${esc(p.nombre)}</a></h4>
-          <span style="color:var(--muted)">${dinero(precioFinal(p))} c/u</span><br>
-          <button class="rm" data-rm="${esc(p.id)}">Quitar</button>
+          <span style="color:var(--muted);font-size:.88rem">${dinero(precioFinal(p))} c/u</span><br>
+          <button class="rm" data-rm="${esc(p.id)}">${ico("trash", 15)} Quitar</button>
         </div>
         <div style="text-align:right">
-          <div class="qty"><button data-m="${esc(p.id)}" aria-label="Menos">−</button><span>${n}</span><button data-p="${esc(p.id)}" aria-label="Más">+</button></div>
-          <div style="margin-top:6px;font-weight:700">${dinero(precioFinal(p) * n)}</div>
+          <div class="qty"><button data-m="${esc(p.id)}" aria-label="Menos">${ico("minus", 16)}</button><span>${n}</span><button data-p="${esc(p.id)}" aria-label="Más">${ico("plus", 16)}</button></div>
+          <div style="margin-top:8px;font:700 1.1rem var(--font-d)">${dinero(precioFinal(p) * n)}</div>
         </div>
       </div>`
       )
@@ -39,11 +42,12 @@
   }
 
   $("items").addEventListener("click", (e) => {
-    const t = e.target;
+    const b = e.target.closest("button");
+    if (!b) return;
     const c = Carrito.leer();
-    if (t.dataset.rm) Carrito.fijar(t.dataset.rm, 0);
-    else if (t.dataset.m) Carrito.fijar(t.dataset.m, (c[t.dataset.m] || 1) - 1);
-    else if (t.dataset.p) Carrito.fijar(t.dataset.p, (c[t.dataset.p] || 0) + 1);
+    if (b.dataset.rm) Carrito.fijar(b.dataset.rm, 0);
+    else if (b.dataset.m) Carrito.fijar(b.dataset.m, (c[b.dataset.m] || 1) - 1);
+    else if (b.dataset.p) Carrito.fijar(b.dataset.p, (c[b.dataset.p] || 0) + 1);
     else return;
     pintar();
   });
@@ -56,6 +60,7 @@
     $("modal-msg").textContent = msg;
     $("btn-wa").href = `https://wa.me/${cfg.tienda.whatsapp}?text=${encodeURIComponent(ultimo.texto)}`;
     $("modal").classList.add("on");
+    confeti();
   }
 
   $("btn-pdf").onclick = () => ultimo && ultimo.doc.save(ultimo.nombreArchivo);

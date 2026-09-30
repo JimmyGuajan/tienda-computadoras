@@ -1,15 +1,21 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Producto | TechNova</title>
+<meta name="theme-color" content="#05070c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('tn_theme')||'dark'}catch(e){}</script>
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<header id="header"></header>
-<main class="section"><div class="wrap" id="detalle"><p class="vacio">Cargando...</p></div></main>
-<footer id="footer"></footer>
+<main class="section" style="padding-top:clamp(28px,4vw,48px)"><div class="wrap">
+  <div id="detalle"><div class="skel" style="height:420px"><i style="height:100%;aspect-ratio:auto"></i></div></div>
+  <div id="relacionados" style="margin-top:clamp(48px,7vw,88px)"></div>
+</div></main>
 <script src="js/settings.js"></script>
 <script src="js/app.js"></script>
 <script src="js/producto.js"></script>

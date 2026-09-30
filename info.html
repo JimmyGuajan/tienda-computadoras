@@ -1,33 +1,46 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Información y métodos de pago | TechNova</title>
 <meta name="description" content="Contacto, horarios, métodos de pago con cuentas bancarias y QR, y preguntas frecuentes.">
+<meta name="theme-color" content="#05070c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('tn_theme')||'dark'}catch(e){}</script>
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<header id="header"></header>
 <main>
-  <section class="section" id="contacto"><div class="wrap">
-    <h2>Contacto</h2><p class="sub">Escríbenos, estamos para ayudarte</p>
+  <div class="wrap page-head">
+    <div class="crumbs"><a href="index.html">Inicio</a> / <span>Información</span></div>
+    <span class="eyebrow">Información</span>
+    <h1>Contacto y pagos</h1>
+  </div>
+  <section class="section" id="contacto" style="padding-top:28px"><div class="wrap">
+    <div class="sec-head"><div><h2>Contacto</h2><p class="sub">Escríbenos, estamos para ayudarte.</p></div></div>
     <div class="info-grid" id="contactos"></div>
     <div id="mapa"></div>
   </div></section>
 
-  <section class="section" id="pagos"><div class="wrap">
-    <h2>Métodos de pago</h2>
-    <p class="sub">Transferencia o depósito a cualquiera de estas cuentas. Escanea el QR desde la app de tu banco y envíanos el comprobante por WhatsApp.</p>
+  <section class="section" id="pagos" style="padding-top:0"><div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Pagos</span><h2>Métodos de pago</h2>
+      <p class="sub">Transferencia o depósito a cualquiera de estas cuentas.</p></div></div>
+    <div class="pay-steps">
+      <div><b>1</b>Escanea el QR o copia el número de cuenta</div>
+      <div><b>2</b>Realiza la transferencia desde tu banco</div>
+      <div><b>3</b>Envíanos el comprobante por WhatsApp</div>
+    </div>
     <div class="banks" id="bancos"></div>
   </div></section>
 
-  <section class="section" id="faq"><div class="wrap">
-    <h2>Preguntas frecuentes</h2><p class="sub">&nbsp;</p>
-    <div id="faqs" style="max-width:780px"></div>
+  <section class="section" id="faq" style="padding-top:0"><div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Ayuda</span><h2>Preguntas frecuentes</h2></div></div>
+    <div id="faqs" style="max-width:820px"></div>
   </div></section>
 </main>
-<footer id="footer"></footer>
 <script src="js/settings.js"></script>
 <script src="js/app.js"></script>
 <script src="js/info.js"></script>

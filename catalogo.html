@@ -1,41 +1,52 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Catálogo | TechNova</title>
-<meta name="description" content="Catálogo completo de laptops, PCs, componentes, monitores y periféricos con filtros.">
+<meta name="description" content="Catálogo completo de laptops, PCs, componentes, monitores y periféricos con filtros por marca, uso y precio.">
+<meta name="theme-color" content="#05070c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('tn_theme')||'dark'}catch(e){}</script>
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<header id="header"></header>
-<main class="section"><div class="wrap">
-  <h2>Catálogo</h2><p class="sub">Filtra por categoría, marca, uso y precio</p>
-  <div class="layout">
-    <aside class="filters">
-      <div><label for="q">Buscar</label><input id="q" type="search" placeholder="Ej: laptop, RTX, 16 GB"></div>
-      <div><label for="cat">Categoría</label><select id="cat"></select></div>
-      <div><label for="marca">Marca</label><select id="marca"></select></div>
-      <div><label for="uso">Uso</label><select id="uso"></select></div>
-      <div><label for="max">Precio máximo: <b id="maxv"></b></label><input id="max" type="range" step="10"></div>
-      <div><label><input id="oferta" type="checkbox" style="width:auto;margin-right:6px">Solo ofertas</label></div>
-      <button class="btn btn-ghost" id="limpiar">Limpiar filtros</button>
-    </aside>
-    <section>
-      <div class="result-bar">
-        <span id="n"></span>
-        <select id="orden" style="width:auto">
-          <option value="">Orden: destacados</option>
-          <option value="asc">Precio: menor a mayor</option>
-          <option value="desc">Precio: mayor a menor</option>
-          <option value="az">Nombre A-Z</option>
-        </select>
-      </div>
-      <div class="grid" id="lista"></div>
-    </section>
+<main>
+  <div class="wrap page-head">
+    <div class="crumbs"><a href="index.html">Inicio</a> / <span>Catálogo</span></div>
+    <span class="eyebrow">Tienda</span>
+    <h1>Catálogo</h1>
+    <p class="sub">Filtra por categoría, marca, uso y precio. Presiona <b>/</b> para buscar desde cualquier lugar.</p>
   </div>
-</div></main>
-<footer id="footer"></footer>
+  <section class="section" style="padding-top:28px"><div class="wrap">
+    <div class="layout">
+      <aside class="filters" id="filters">
+        <h3>Filtros</h3>
+        <div><label for="q">Buscar</label><input id="q" type="search" placeholder="Ej: laptop, RTX, 16 GB"></div>
+        <div><label for="cat">Categoría</label><select id="cat"></select></div>
+        <div><label for="marca">Marca</label><select id="marca"></select></div>
+        <div><label for="uso">Uso</label><select id="uso"></select></div>
+        <div><label for="max">Precio máximo: <b id="maxv" style="color:var(--txt)"></b></label><input id="max" type="range" step="10"></div>
+        <div class="check-row"><input id="oferta" type="checkbox"><label for="oferta">Solo ofertas</label></div>
+        <button class="btn btn-ghost" id="limpiar">Limpiar filtros</button>
+      </aside>
+      <section>
+        <div class="result-bar">
+          <span style="display:flex;gap:10px;align-items:center"><button class="btn btn-ghost filter-toggle" id="ftoggle">Filtros</button><span id="n"></span></span>
+          <select id="orden">
+            <option value="">Orden: destacados</option>
+            <option value="asc">Precio: menor a mayor</option>
+            <option value="desc">Precio: mayor a menor</option>
+            <option value="az">Nombre A-Z</option>
+          </select>
+        </div>
+        <div class="grid" id="lista"></div>
+      </section>
+    </div>
+  </div></section>
+</main>
 <script src="js/settings.js"></script>
 <script src="js/app.js"></script>
 <script src="js/catalogo.js"></script>
