@@ -1,0 +1,10 @@
+CARPETA DE IMAGENES (unica fuente de imagenes del sitio)
+
+1) Productos: copia aqui la foto y escribe su nombre EXACTO en el campo "imagen"
+   de data/productos.json. Ej: laptop-gamer-x15.jpg
+   Si falta la foto, el sitio muestra una imagen de marcador.
+
+2) QR de pago: guarda aqui los QR descargados de la app de cada banco:
+   qr-pichincha.png, qr-guayaquil.png, qr-produbanco.png
+
+Recomendado: JPG/WebP de unos 800x600 px y menos de 200 KB cada una.

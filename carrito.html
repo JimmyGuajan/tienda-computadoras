@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carrito | TechNova</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header id="header"></header>
+<main class="section"><div class="wrap">
+  <h2>Tu pedido</h2><p class="sub">Revisa los productos y finaliza para generar tu PDF</p>
+  <div id="vacio" class="panel" hidden style="text-align:center;padding:50px">
+    <p style="color:var(--muted);margin-bottom:16px">Tu carrito está vacío.</p>
+    <a class="btn" href="catalogo.html">Ir al catálogo</a>
+  </div>
+  <div class="cart-layout" id="contenido" hidden>
+    <div class="panel" id="items"></div>
+    <aside class="panel">
+      <h3 style="margin-bottom:12px">Resumen</h3>
+      <div class="sum-row"><span>Productos</span><span id="nprod"></span></div>
+      <div class="sum-row sum-total"><span>Total</span><span id="total"></span></div>
+      <div style="margin-top:18px">
+        <div class="field"><label for="nombre">Tu nombre *</label><input id="nombre" autocomplete="name" placeholder="Nombre y apellido"></div>
+        <div class="field"><label for="tel">Tu teléfono *</label><input id="tel" type="tel" autocomplete="tel" placeholder="09XXXXXXXX"></div>
+        <div class="field"><label for="nota">Nota (opcional)</label><textarea id="nota" rows="2" placeholder="Ciudad, dirección de envío, etc."></textarea></div>
+        <button class="btn btn-block" id="finalizar">Finalizar y generar PDF</button>
+        <button class="btn btn-ghost btn-block" id="vaciar" style="margin-top:8px">Vaciar carrito</button>
+        <p class="note">Se genera un PDF con tu pedido y los datos de pago. Envíalo por WhatsApp para confirmar. El precio final lo confirmamos contigo.</p>
+      </div>
+    </aside>
+  </div>
+</div></main>
+
+<div class="modal" id="modal">
+  <div class="box">
+    <div class="check">✅</div>
+    <h3>¡Pedido generado!</h3>
+    <p id="modal-msg" style="color:var(--muted)"></p>
+    <a class="btn btn-wa" id="btn-wa" target="_blank" rel="noopener">Abrir WhatsApp</a>
+    <button class="btn btn-ghost" id="btn-pdf">Descargar PDF otra vez</button>
+    <button class="btn btn-ghost" id="btn-cerrar">Cerrar</button>
+  </div>
+</div>
+
+<footer id="footer"></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="js/settings.js"></script>
+<script src="js/app.js"></script>
+<script src="js/pdf.js"></script>
+<script src="js/carrito.js"></script>
+</body>
+</html>

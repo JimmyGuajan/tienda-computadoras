@@ -1,0 +1,64 @@
+{
+  "tienda": {
+    "nombre": "TechNova",
+    "eslogan": "Computadoras y tecnología para cada necesidad",
+    "whatsapp": "593999999999",
+    "telefono": "+593 99 999 9999",
+    "correo": "ventas@technova.ec",
+    "direccion": "Quito, Ecuador (completar dirección)",
+    "horario": "Lunes a viernes 09:00 - 18:00 · Sábados 09:00 - 13:00",
+    "mapa": "",
+    "redes": {
+      "instagram": "",
+      "facebook": "",
+      "tiktok": ""
+    }
+  },
+  "bancos": [
+    {
+      "banco": "Banco Pichincha",
+      "tipoCuenta": "Ahorros",
+      "numeroCuenta": "0000000000",
+      "titular": "Nombre del titular",
+      "identificacion": "0000000000",
+      "correo": "ventas@technova.ec",
+      "qr": "imagen/qr-pichincha.png"
+    },
+    {
+      "banco": "Banco de Guayaquil",
+      "tipoCuenta": "Corriente",
+      "numeroCuenta": "0000000000",
+      "titular": "Nombre del titular",
+      "identificacion": "0000000000",
+      "correo": "ventas@technova.ec",
+      "qr": "imagen/qr-guayaquil.png"
+    },
+    {
+      "banco": "Produbanco",
+      "tipoCuenta": "Ahorros",
+      "numeroCuenta": "0000000000",
+      "titular": "Nombre del titular",
+      "identificacion": "0000000000",
+      "correo": "ventas@technova.ec",
+      "qr": "imagen/qr-produbanco.png"
+    }
+  ],
+  "faq": [
+    {
+      "p": "¿Cómo hago un pedido?",
+      "r": "Agrega los productos al carrito, completa tu nombre y teléfono, y pulsa Finalizar. Se genera un PDF con tu pedido que nos envías por WhatsApp."
+    },
+    {
+      "p": "¿Cómo pago?",
+      "r": "Por transferencia o depósito a cualquiera de nuestras cuentas (ver sección Métodos de pago). Envíanos el comprobante por WhatsApp y confirmamos tu pedido."
+    },
+    {
+      "p": "¿Tienen garantía?",
+      "r": "Todos los equipos cuentan con garantía del fabricante. El tiempo depende del producto y se indica en la ficha."
+    },
+    {
+      "p": "¿Hacen envíos?",
+      "r": "Sí, a todo el país. El costo y el tiempo se coordinan contigo por WhatsApp al confirmar el pedido."
+    }
+  ]
+}
