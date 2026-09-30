@@ -50,11 +50,11 @@ const ico = (n, s = 20) =>
 function ph(cat) {
   const icon = ICONS[CAT_ICON[cat]] || ICONS.laptop;
   const svg =
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff0b3"/><stop offset="1" stop-color="#ffd24d"/></linearGradient>` +
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eaf2ff"/><stop offset="1" stop-color="#bcd4ff"/></linearGradient>` +
     `<radialGradient id="r" cx=".5" cy=".45" r=".5"><stop offset="0" stop-color="#ffffff" stop-opacity=".7"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient>` +
-    `<pattern id="p" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0v28" fill="none" stroke="#7a5200" stroke-opacity=".07"/></pattern></defs>` +
+    `<pattern id="p" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0v28" fill="none" stroke="#0b3a9e" stroke-opacity=".08"/></pattern></defs>` +
     `<rect width="400" height="300" fill="url(#g)"/><rect width="400" height="300" fill="url(#p)"/><rect width="400" height="300" fill="url(#r)"/>` +
-    `<g transform="translate(130 80) scale(6.25)" fill="none" stroke="#8a5a00" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">${icon}</g></svg>`;
+    `<g transform="translate(130 80) scale(6.25)" fill="none" stroke="#1a4fd0" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">${icon}</g></svg>`;
   return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
 }
 
@@ -199,26 +199,33 @@ function aplicarTema(t) {
 async function montarLayout(activa = "") {
   const cfg = await cargarConfig();
   const t = cfg.tienda;
+  const params = new URLSearchParams(location.search);
+  const catActiva = /catalogo\.html$/.test(location.pathname) ? params.get("cat") : null;
   const links = [
-    ["index.html", "Inicio", "inicio"],
-    ["catalogo.html", "Catálogo", "catalogo"],
-    ["asistente.html", "Asistente", "asistente"],
-    ["info.html", "Información", "info"],
+    ["index.html", "Inicio", "inicio", ""],
+    ["catalogo.html", "Todo el catálogo", "catalogo", ""],
+    ...Object.entries(CATEGORIAS).map(([k, n]) => [`catalogo.html?cat=${k}`, n, "cat-" + k, ""]),
+    ["catalogo.html?oferta=1", "Ofertas", "oferta", "hot"],
+    ["asistente.html", "Asistente", "asistente", "sep"],
+    ["info.html", "Información", "info", ""],
   ];
-  const logo = `<a class="logo" href="index.html"><span class="logo-mark">${ico("cpu", 20)}</span>${esc(t.nombre)}</a>`;
+  const esActiva = (k) => (k === "catalogo" ? activa === "catalogo" && !catActiva && !params.get("oferta") : k.startsWith("cat-") ? catActiva === k.slice(4) : k === "oferta" ? !!params.get("oferta") && activa === "catalogo" : k === activa);
+  const logo = `<a class="logo" href="index.html"><span class="logo-mark">${ico("cpu", 20)}</span><span class="nm">${esc(t.nombre)}</span></a>`;
 
-  document.body.insertAdjacentHTML("afterbegin", `<div class="topbar"><span>Envíos a todo el país · Garantía del fabricante · Pedidos por WhatsApp</span></div><header class="site" id="header"></header>`);
+  document.body.insertAdjacentHTML(
+    "afterbegin",
+    `<div class="topbar"><div class="wrap"><span>${ico("chat", 14)} WhatsApp: <a href="https://wa.me/${esc(t.whatsapp)}" target="_blank" rel="noopener">${esc(t.telefono)}</a></span><span class="t-right">Envíos a todo el país · Garantía del fabricante · Pedidos por WhatsApp</span></div></div><header class="site" id="header"></header>`
+  );
   document.getElementById("header").innerHTML = `
   <div class="wrap nav">
     ${logo}
-    <nav id="menu" aria-label="Principal">${links.map(([h, n, k]) => `<a href="${h}" class="${k === activa ? "on" : ""}">${n}</a>`).join("")}</nav>
+    <button class="search-btn" id="open-search" aria-label="Buscar">${ico("search", 18)}<span>Buscar laptops, PCs, componentes...</span><kbd>Ctrl K</kbd></button>
     <div class="nav-actions">
-      <button class="search-btn" id="open-search" aria-label="Buscar">${ico("search", 18)}<span>Buscar productos</span><kbd>Ctrl K</kbd></button>
       <button class="icon-btn" id="theme-btn" aria-label="Cambiar tema"></button>
       <a class="icon-btn cart-btn" href="carrito.html" aria-label="Carrito">${ico("cart", 20)}<span class="count" data-cart-count hidden>0</span></a>
-      <button class="icon-btn burger" aria-label="Menú" id="burger">${ico("menu", 20)}</button>
     </div>
-  </div>`;
+  </div>
+  <div class="catbar"><div class="wrap"><nav id="menu" aria-label="Principal">${links.map(([h, n, k, c]) => `<a href="${h}" class="${esActiva(k) ? "on" : ""} ${c}">${n}</a>`).join("")}</nav></div></div>`;
 
   const foot = document.createElement("footer");
   foot.className = "site";
@@ -260,7 +267,6 @@ async function montarLayout(activa = "") {
 
   aplicarTema(document.documentElement.dataset.theme || "light");
   document.getElementById("theme-btn").onclick = () => aplicarTema(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
-  document.getElementById("burger").onclick = () => document.getElementById("menu").classList.toggle("open");
 
   iniciarDrawer();
   iniciarPaleta(t);
@@ -423,7 +429,7 @@ function confeti() {
   cv.width = innerWidth; cv.height = innerHeight;
   document.body.appendChild(cv);
   const cx = cv.getContext("2d");
-  const cols = ["#ffd60a", "#ffb703", "#ff9500", "#1c1500", "#fff3c4", "#e08a00"];
+  const cols = ["#1f5eff", "#38a3ff", "#0a2a73", "#9fd0ff", "#ffffff", "#22c55e"];
   const ps = Array.from({ length: 160 }, () => ({
     x: innerWidth / 2, y: innerHeight * 0.55,
     vx: (Math.random() - 0.5) * 18, vy: -Math.random() * 18 - 6,

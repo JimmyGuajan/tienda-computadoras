@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TechNova | Laptops, PCs y componentes en Ecuador</title>
 <meta name="description" content="Catálogo de laptops, computadoras, componentes y periféricos. Encuentra tu equipo ideal con nuestro asistente y envía tu pedido por WhatsApp.">
-<meta name="theme-color" content="#fffdf6">
+<meta name="theme-color" content="#f5f8fd">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -14,27 +14,18 @@
 </head>
 <body>
 <main>
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap hero-grid">
+  <!-- BANNER PRINCIPAL + PROMOCIONES -->
+  <section class="home-top"><div class="wrap home-grid">
+    <div class="hero-main">
       <div>
-        <a class="pill" href="asistente.html"><b>NUEVO</b> Asistente que te recomienda el equipo ideal <span aria-hidden="true">→</span></a>
-        <h1>El equipo correcto,<br><span class="grad-text">sin complicarte.</span></h1>
-        <p class="lead">Laptops, PCs, componentes y periféricos de las mejores marcas. Explora el catálogo, arma tu pedido y envíalo por WhatsApp en un minuto.</p>
+        <span class="tag">● TECNOLOGÍA PARA CADA NECESIDAD</span>
+        <h1>El equipo correcto, <em>sin complicarte.</em></h1>
+        <p>Laptops, PCs, componentes y periféricos de las mejores marcas. Arma tu pedido y envíalo por WhatsApp en un minuto.</p>
         <div class="acts">
-          <a class="btn btn-lg" href="catalogo.html">Explorar catálogo <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-lg" href="catalogo.html">Ver catálogo</a>
           <a class="btn btn-lg btn-ghost" href="asistente.html">Encuentra mi equipo</a>
         </div>
-        <div class="trust">
-          <span id="t1"></span><span id="t2"></span><span id="t3"></span>
-        </div>
-        <div class="stats">
-          <div><b id="s-prod">0</b><span>Productos</span></div>
-          <div><b id="s-cat">0</b><span>Categorías</span></div>
-          <div><b id="s-mar">0</b><span>Marcas</span></div>
-        </div>
       </div>
-
       <div class="device" aria-hidden="true">
         <div class="device-glow"></div>
         <div class="laptop">
@@ -43,13 +34,13 @@
             <div class="scr-body">
               <div class="scr-chart">
                 <svg viewBox="0 0 200 100" preserveAspectRatio="none">
-                  <defs><linearGradient id="lg" x1="0" x2="1"><stop offset="0" stop-color="#ffd60a"/><stop offset=".6" stop-color="#ffb703"/><stop offset="1" stop-color="#ff9500"/></linearGradient></defs>
-                  <path d="M0 25H200M0 50H200M0 75H200" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+                  <defs><linearGradient id="lg" x1="0" x2="1"><stop offset="0" stop-color="#3b82f6"/><stop offset=".6" stop-color="#38bdf8"/><stop offset="1" stop-color="#9fd0ff"/></linearGradient></defs>
+                  <path d="M0 25H200M0 50H200M0 75H200" stroke="rgba(255,255,255,.07)" stroke-width="1"/>
                   <polyline class="line" points="4,88 28,70 50,76 74,46 98,54 122,30 148,38 172,14 196,20"/>
                 </svg>
               </div>
               <div class="scr-side">
-                <div class="scr-fps"><span id="fps">144</span><small>FPS</small></div>
+                <div class="scr-fps"><span>144</span><small>FPS</small></div>
                 <div class="bar"><i style="--w:92%"></i></div>
                 <div class="bar"><i style="--w:68%"></i></div>
                 <div class="bar"><i style="--w:81%"></i></div>
@@ -63,49 +54,50 @@
         <div class="chip-f c3"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 14h18M7 17h.01"/></svg>SSD NVMe 1 TB</div>
       </div>
     </div>
-  </section>
 
-  <!-- MARQUEE -->
-  <div class="marquee" aria-hidden="true"><div class="marquee-track" id="marquee"></div></div>
+    <div class="hero-side">
+      <a class="promo" href="catalogo.html?oferta=1">
+        <div><span class="k">Ofertas</span><h3 id="promo-of">Precios especiales</h3><p>Equipos y accesorios con descuento por tiempo limitado.</p></div>
+        <span class="more">Ver ofertas <span id="ic-a1"></span></span>
+        <span class="pi" id="ic-p1"></span>
+      </a>
+      <a class="promo alt" href="asistente.html">
+        <div><span class="k">Asistente</span><h3>¿No sabes cuál elegir?</h3><p>3 preguntas y te recomendamos el equipo ideal.</p></div>
+        <span class="more">Empezar el test <span id="ic-a2"></span></span>
+        <span class="pi" id="ic-p2"></span>
+      </a>
+    </div>
+  </div></section>
+
+  <!-- BENEFICIOS -->
+  <section class="perks-strip"><div class="wrap"><div class="perks" id="perks"></div></div></section>
 
   <!-- CATEGORÍAS -->
-  <section class="section"><div class="wrap">
-    <div class="sec-head"><div><span class="eyebrow">Categorías</span><h2>Todo para tu setup</h2><p class="sub">De la laptop al último componente, en un solo lugar.</p></div></div>
-    <div class="bento" id="cats"></div>
+  <section class="section" style="padding-bottom:0"><div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Categorías</span><h2>Compra por categoría</h2></div></div>
+    <div class="cat-row" id="cats"></div>
+  </div></section>
+
+  <!-- OFERTAS -->
+  <section class="section" style="padding-bottom:0"><div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Precios especiales</span><h2>Ofertas de la semana</h2></div><a class="btn btn-ghost" href="catalogo.html?oferta=1">Ver todas</a></div>
+    <div class="grid" id="ofertas"></div>
   </div></section>
 
   <!-- DESTACADOS -->
-  <section class="section" style="padding-top:0"><div class="wrap">
+  <section class="section" style="padding-bottom:0"><div class="wrap">
     <div class="sec-head"><div><span class="eyebrow">Selección</span><h2>Productos destacados</h2></div><a class="btn btn-ghost" href="catalogo.html">Ver todo</a></div>
     <div class="grid" id="destacados"></div>
   </div></section>
 
-  <!-- CTA ASISTENTE -->
-  <section class="section" style="padding-top:0"><div class="wrap">
-    <div class="cta reveal">
-      <div>
-        <h2>¿No sabes cuál elegir?</h2>
-        <p>Responde 3 preguntas sobre tu uso, presupuesto y preferencia. Te mostramos los equipos que mejor encajan, con su porcentaje de compatibilidad.</p>
-        <a class="btn btn-lg" href="asistente.html">Empezar el test</a>
-      </div>
-      <div class="cta-art"><span>🎮 Gaming</span><span>🎨 Diseño y video</span><span>💻 Programación</span></div>
-    </div>
-  </div></section>
-
-  <!-- OFERTAS -->
-  <section class="section" style="padding-top:0"><div class="wrap">
-    <div class="sec-head"><div><span class="eyebrow">Precios especiales</span><h2>Ofertas</h2></div><a class="btn btn-ghost" href="catalogo.html?oferta=1">Ver todas</a></div>
-    <div class="grid" id="ofertas"></div>
-  </div></section>
+  <!-- TECNOLOGÍAS -->
+  <section class="section" style="padding-bottom:0"><div class="marquee" aria-hidden="true"><div class="marquee-track" id="marquee"></div></div></section>
 
   <!-- CÓMO COMPRAR -->
-  <section class="section" style="padding-top:0"><div class="wrap">
+  <section class="section"><div class="wrap">
     <div class="sec-head"><div><span class="eyebrow">Proceso</span><h2>Compra en 4 pasos</h2><p class="sub">Sin registros ni formularios largos.</p></div></div>
     <div class="steps" id="steps"></div>
   </div></section>
-
-  <!-- BENEFICIOS -->
-  <section class="section" style="padding-top:0"><div class="wrap"><div class="perks" id="perks"></div></div></section>
 </main>
 <script src="js/settings.js"></script>
 <script src="js/app.js"></script>
