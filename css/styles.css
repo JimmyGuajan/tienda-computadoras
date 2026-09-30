@@ -515,3 +515,9 @@ footer.site{background:var(--bg-soft);border-top:1px solid var(--line);margin-to
 }
 
 .search-btn span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;text-align:left}
+
+/* Móvil: el buscador se encoge, nunca empuja tema/carrito fuera */
+.nav>*{min-width:0}
+.search-btn{min-width:0;overflow:hidden}
+.nav-actions{flex:none}
+@media(max-width:600px){.nav{gap:8px}.icon-btn{width:40px;height:40px}.search-btn{height:42px;padding:0 12px}.search-btn kbd{display:none}.wrap{width:min(1200px,100% - 28px)}}
