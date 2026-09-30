@@ -19,7 +19,7 @@ function generarPDF({ cfg, lineas, cliente, nota }) {
   const asegurar = (alto) => { if (y + alto > 280) nuevaPagina(); };
 
   // Encabezado
-  doc.setFillColor(11, 18, 32);
+  doc.setFillColor(28, 21, 0);
   doc.rect(0, 0, W, 34, "F");
   doc.setTextColor(255);
   doc.setFont("helvetica", "bold").setFontSize(20).text(cfg.tienda.nombre, M, 16);
@@ -43,8 +43,8 @@ function generarPDF({ cfg, lineas, cliente, nota }) {
   // Tabla
   const col = { prod: M + 2, cant: 128, unit: 155, sub: W - M - 2 };
   const cabecera = () => {
-    doc.setFillColor(59, 130, 246).rect(M, y - 5, W - 2 * M, 8, "F");
-    doc.setTextColor(255).setFont("helvetica", "bold").setFontSize(10);
+    doc.setFillColor(255, 196, 0).rect(M, y - 5, W - 2 * M, 8, "F");
+    doc.setTextColor(28, 21, 0).setFont("helvetica", "bold").setFontSize(10);
     doc.text("Producto", col.prod, y);
     doc.text("Cant.", col.cant, y, { align: "center" });
     doc.text("P. unit.", col.unit, y, { align: "right" });
@@ -57,7 +57,7 @@ function generarPDF({ cfg, lineas, cliente, nota }) {
     const nombre = doc.splitTextToSize(p.nombre, 100);
     const alto = Math.max(nombre.length * 5, 6) + 2;
     if (y + alto > 275) { nuevaPagina(); cabecera(); doc.setTextColor(30).setFont("helvetica", "normal").setFontSize(10); }
-    if (i % 2 === 0) { doc.setFillColor(242, 245, 251).rect(M, y - 4.5, W - 2 * M, alto, "F"); }
+    if (i % 2 === 0) { doc.setFillColor(255, 248, 222).rect(M, y - 4.5, W - 2 * M, alto, "F"); }
     doc.text(nombre, col.prod, y);
     doc.text(String(n), col.cant, y, { align: "center" });
     doc.text(dinero(precioFinal(p)), col.unit, y, { align: "right" });

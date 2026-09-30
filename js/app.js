@@ -50,11 +50,11 @@ const ico = (n, s = 20) =>
 function ph(cat) {
   const icon = ICONS[CAT_ICON[cat]] || ICONS.laptop;
   const svg =
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1a2547"/><stop offset="1" stop-color="#0b1020"/></linearGradient>` +
-    `<radialGradient id="r" cx=".5" cy=".45" r=".5"><stop offset="0" stop-color="#5b8cff" stop-opacity=".45"/><stop offset="1" stop-color="#5b8cff" stop-opacity="0"/></radialGradient>` +
-    `<pattern id="p" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0v28" fill="none" stroke="#ffffff" stroke-opacity=".05"/></pattern></defs>` +
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff0b3"/><stop offset="1" stop-color="#ffd24d"/></linearGradient>` +
+    `<radialGradient id="r" cx=".5" cy=".45" r=".5"><stop offset="0" stop-color="#ffffff" stop-opacity=".7"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient>` +
+    `<pattern id="p" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0v28" fill="none" stroke="#7a5200" stroke-opacity=".07"/></pattern></defs>` +
     `<rect width="400" height="300" fill="url(#g)"/><rect width="400" height="300" fill="url(#p)"/><rect width="400" height="300" fill="url(#r)"/>` +
-    `<g transform="translate(130 80) scale(6.25)" fill="none" stroke="#8fb0ff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">${icon}</g></svg>`;
+    `<g transform="translate(130 80) scale(6.25)" fill="none" stroke="#8a5a00" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">${icon}</g></svg>`;
   return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
 }
 
@@ -258,7 +258,7 @@ async function montarLayout(activa = "") {
      </div>`
   );
 
-  aplicarTema(document.documentElement.dataset.theme || "dark");
+  aplicarTema(document.documentElement.dataset.theme || "light");
   document.getElementById("theme-btn").onclick = () => aplicarTema(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
   document.getElementById("burger").onclick = () => document.getElementById("menu").classList.toggle("open");
 
@@ -423,7 +423,7 @@ function confeti() {
   cv.width = innerWidth; cv.height = innerHeight;
   document.body.appendChild(cv);
   const cx = cv.getContext("2d");
-  const cols = ["#5b8cff", "#8b5cf6", "#22d3ee", "#22c55e", "#f5a524", "#ff6b9d"];
+  const cols = ["#ffd60a", "#ffb703", "#ff9500", "#1c1500", "#fff3c4", "#e08a00"];
   const ps = Array.from({ length: 160 }, () => ({
     x: innerWidth / 2, y: innerHeight * 0.55,
     vx: (Math.random() - 0.5) * 18, vy: -Math.random() * 18 - 6,
