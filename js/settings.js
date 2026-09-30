@@ -3,17 +3,21 @@
    ============================================================ */
 const AJUSTES = {
   /*
-    Cómo se entrega el PDF al finalizar el pedido:
+    Flujo al pulsar "Finalizar y generar PDF":
+      1) Se genera el PDF y aparece "¡Pedido generado!".
+      2) El cliente ve dos pasos: [Descargar PDF] y [Enviar por WhatsApp]
+         (el botón de WhatsApp abre el chat con el número de la tienda y el
+         resumen del pedido ya escrito; si aún no descargó el PDF, se descarga
+         al pulsarlo para que pueda adjuntarlo).
 
-    false -> OPCIÓN 2: se DESCARGA el PDF y aparece un botón
-             "Abrir WhatsApp" con el resumen del pedido. El cliente adjunta
-             el PDF descargado. Funciona en cualquier dispositivo.
-
-    true  -> OPCIÓN 1 (activa ahora): se abre el menú de compartir del celular y el PDF va
-             adjunto directo a WhatsApp. Si el dispositivo no lo soporta,
-             cae automáticamente a la opción 2.
+    BOTON_COMPARTIR_PDF:
+      false -> solo los dos pasos de arriba (recomendado: el cliente siempre
+               sabe a quién envía).
+      true  -> agrega un botón extra "Compartir PDF desde mi celular" (menú
+               nativo del teléfono; ahí el cliente elige el contacto). Solo
+               aparece en dispositivos que lo soportan.
   */
-  COMPARTIR_PDF_NATIVO: true,
+  BOTON_COMPARTIR_PDF: false,
 
   MONEDA: "$",
 };

@@ -56,14 +56,48 @@
     if (confirm("¿Vaciar el carrito?")) { Carrito.vaciar(); pintar(); }
   };
 
-  function abrirModal(msg) {
-    $("modal-msg").textContent = msg;
+  let descargado = false;
+
+  function marcarDescargado() {
+    descargado = true;
+    $("step1").classList.add("done");
+    $("btn-pdf").textContent = "Descargar de nuevo";
+  }
+
+  function descargar() {
+    if (!ultimo) return;
+    ultimo.doc.save(ultimo.nombreArchivo);
+    marcarDescargado();
+  }
+
+  // Muestra "Pedido generado" con los dos pasos: descargar PDF y enviar al WhatsApp de la tienda
+  function abrirModal() {
+    descargado = false;
+    $("step1").classList.remove("done");
+    $("btn-pdf").textContent = "Descargar PDF";
+    $("modal-msg").textContent = `${ultimo.numero} · Total ${dinero(ultimo.total)}`;
+    $("pdf-name").textContent = ultimo.nombreArchivo;
+    $("wa-num").textContent = `Chat con ${cfg.tienda.nombre}: ${cfg.tienda.telefono}`;
     $("btn-wa").href = `https://wa.me/${cfg.tienda.whatsapp}?text=${encodeURIComponent(ultimo.texto)}`;
+    // Compartir nativo: solo si se activó en js/settings.js y el dispositivo lo soporta
+    const share = $("btn-share");
+    share.hidden = true;
+    if (AJUSTES.BOTON_COMPARTIR_PDF && navigator.canShare) {
+      try {
+        const archivo = new File([ultimo.doc.output("blob")], ultimo.nombreArchivo, { type: "application/pdf" });
+        if (navigator.canShare({ files: [archivo] })) {
+          share.hidden = false;
+          share.onclick = () => navigator.share({ files: [archivo], title: `Pedido ${ultimo.numero}`, text: ultimo.texto }).then(marcarDescargado).catch(() => {});
+        }
+      } catch {}
+    }
     $("modal").classList.add("on");
     confeti();
   }
 
-  $("btn-pdf").onclick = () => ultimo && ultimo.doc.save(ultimo.nombreArchivo);
+  $("btn-pdf").onclick = descargar;
+  // Si van a WhatsApp sin haber descargado el PDF, lo descargamos para que lo puedan adjuntar
+  $("btn-wa").addEventListener("click", () => { if (!descargado) descargar(); });
   $("btn-cerrar").onclick = () => $("modal").classList.remove("on");
 
   $("finalizar").onclick = async () => {
@@ -83,26 +117,15 @@
       alert(err.message);
       return;
     }
-    ultimo = { doc: pdf.doc, nombreArchivo: pdf.nombreArchivo, texto: textoWhatsApp({ ...datos, numero: pdf.numero, total: pdf.total }) };
-
-    /* OPCIÓN 1: compartir nativo (se activa en js/settings.js) */
-    if (AJUSTES.COMPARTIR_PDF_NATIVO) {
-      try {
-        const archivo = new File([pdf.doc.output("blob")], pdf.nombreArchivo, { type: "application/pdf" });
-        if (navigator.canShare && navigator.canShare({ files: [archivo] })) {
-          await navigator.share({ files: [archivo], title: `Pedido ${pdf.numero}`, text: ultimo.texto });
-          abrirModal("Elige WhatsApp en el menú de compartir para enviarnos el PDF. Si no lo enviaste, puedes hacerlo desde aquí.");
-          return;
-        }
-      } catch (err) {
-        if (err && err.name === "AbortError") return; // el usuario canceló
-        // cualquier otro fallo: seguimos con la opción 2
-      }
-    }
-
-    /* OPCIÓN 2: descargar el PDF y abrir WhatsApp con el resumen */
-    pdf.doc.save(pdf.nombreArchivo);
-    abrirModal("Se descargó tu PDF. Pulsa \"Abrir WhatsApp\" y adjunta el archivo descargado (" + pdf.nombreArchivo + ") junto con tu comprobante de pago.");
+    ultimo = {
+      doc: pdf.doc,
+      nombreArchivo: pdf.nombreArchivo,
+      numero: pdf.numero,
+      total: pdf.total,
+      texto: textoWhatsApp({ ...datos, numero: pdf.numero, total: pdf.total }),
+    };
+    // Solo genera el PDF y muestra "Pedido generado"; el cliente decide descargar y enviar desde ahí
+    abrirModal();
   };
 
   pintar();

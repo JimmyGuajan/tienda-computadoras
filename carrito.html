@@ -46,10 +46,22 @@
   <div class="box">
     <div class="check" id="modal-check"></div>
     <h3>¡Pedido generado!</h3>
-    <p id="modal-msg" style="color:var(--muted);font-size:.93rem"></p>
-    <a class="btn btn-wa btn-lg" id="btn-wa" target="_blank" rel="noopener">Abrir WhatsApp</a>
-    <button class="btn btn-ghost" id="btn-pdf">Descargar PDF otra vez</button>
+    <p id="modal-msg" class="m-sum"></p>
+    <div class="m-steps">
+      <div class="m-step" id="step1">
+        <b>1</b>
+        <div><strong>Descarga tu pedido en PDF</strong><small id="pdf-name"></small></div>
+        <button class="btn btn-ghost" id="btn-pdf">Descargar PDF</button>
+      </div>
+      <div class="m-step" id="step2">
+        <b>2</b>
+        <div><strong>Envíalo a nuestro WhatsApp</strong><small id="wa-num"></small></div>
+        <a class="btn btn-wa" id="btn-wa" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+      </div>
+    </div>
+    <p class="m-hint" id="m-hint">En WhatsApp toca el clip (📎) → Documento y elige el PDF descargado. Adjunta también tu comprobante de pago.</p>
     <button class="btn btn-ghost" id="btn-cerrar">Cerrar</button>
+    <button class="btn btn-ghost" id="btn-share" hidden>Compartir PDF desde mi celular</button>
   </div>
 </div>
 <script src="js/settings.js"></script>
